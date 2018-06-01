@@ -1,0 +1,32 @@
+/*
+Theme Name: Bootstrap to WordPress
+Author: SEO CoPilot
+Author URI: wwww.seo-copilot.co.uk
+Description: Wordpress Theme using bootstrap as the main CSS framework.
+*/
+
+/* Main CSS
+-------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+/* Mobile Queries
+-------------------------------------------------------------- */
+
+
+/* Max Width */
+@media (max-width: 495px) {}
+@media (min-width: 576px) {}
+@media (max-width: 768px) {}
+@media (max-width: 992px) {}
+
+/* min Width */
+@media only screen and (min-width : 480px) {}
+@media only screen and (min-width : 768px) {}
+@media only screen and (min-width : 992px) {}
+@media only screen and (min-width : 1200px) {}
