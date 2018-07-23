@@ -12,7 +12,6 @@ function theme_styles() {
 	wp_enqueue_style( 'bootstrap-grid_css', get_template_directory_uri() . '/css/bootstrap-grid.min.css' );
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'main_css', get_template_directory_uri() . 'css/theme.css' );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/fontawesome.css' );
 
 }
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
