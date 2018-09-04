@@ -17,13 +17,13 @@
 
   <body <?php body_class(); ?>>
 
-   <nav class="navbar navbar-toggleable-md fixed-top bg-faded text-center navbar-custom">
+   <nav class="navbar navbar-toggleable-md bg-faded text-center navbar-custom">
    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#bs4navbar" aria-controls="bs4navbar" aria-expanded="false" aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>
    </button>
    <a href="" class="hidden-md-up text-right menubutton">Menu</a>
    <?php
-   wp_nav_menu([
+   wp_nav_menu(array(
      'menu'            => 'header-menu',
      'theme_location'  => 'header-menu',
      'container'       => 'div',
@@ -34,6 +34,6 @@
      'depth'           => 2,
      'fallback_cb'     => 'bs4navwalker::fallback',
      'walker'          => new bs4navwalker()
-   ]);
+   ));
    ?>
  </nav>
