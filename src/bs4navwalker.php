@@ -1,15 +1,5 @@
 <?php
 
-/**
- * Class Name: bs4Navwalker
- * GitHub URI: https://github.com/dupkey/bs4navwalker
- * Description: A custom WordPress nav walker class for Bootstrap 4 (v4.0.0-alpha.1) nav menus in a custom theme using the WordPress built in menu manager
- * Version: 0.1
- * Author: Dominic Businaro - @dominicbusinaro
- * License: GPL-2.0+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- */
-
 class bs4Navwalker extends Walker_Nav_Menu
 {
     /**
@@ -25,7 +15,7 @@ class bs4Navwalker extends Walker_Nav_Menu
      */
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<div class=\"dropdown-menu\">\n";
+        $output .= "\n$indent<ul class=\"dropdown-menu\">\n";
     }
 
     /**
@@ -41,7 +31,7 @@ class bs4Navwalker extends Walker_Nav_Menu
      */
     public function end_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat("\t", $depth);
-        $output .= "$indent</div>\n";
+        $output .= "$indent</ul>\n";
     }
 
     /**
@@ -110,6 +100,10 @@ class bs4Navwalker extends Walker_Nav_Menu
         if ($depth === 0) {
             $output .= $indent . '<li' . $id . $class_names .'>';
         }
+        if ($depth === 1) {
+            $output .= $indent . '<li' . $class_names .'>';
+        }
+        
         //
 
         // $output .= $indent . '<li' . $id . $class_names .'>';
@@ -129,23 +123,18 @@ class bs4Navwalker extends Walker_Nav_Menu
             $atts['class']       .= ' dropdown-toggle';
             $atts['data-toggle']  = 'dropdown';
         }
-
-        if ($depth > 0) {
-            $atts['class'] = 'dropdown-item';
-        }
-
         if ($depth === 1 && in_array('menu-item-has-children', $classes)) {
-            $atts['class']       .= ' dropdown-toggle';
+            $atts['class']       .= ' dropdown-item dropdown-toggle';
             $atts['data-toggle']  = 'dropdown';
         }
-        if ($depth === 0) {
-            $atts['class'] = 'nav-link';
+
+        if ($depth > 0 && !(in_array('menu-item-has-children', $classes))) {
+            $atts['class'] = 'dropdown-item';
         }
 
         if (in_array('current-menu-item', $item->classes)) {
             $atts['class'] .= ' active';
         }
-
         // print_r($item);
         //
 
@@ -225,7 +214,7 @@ class bs4Navwalker extends Walker_Nav_Menu
      * @param array  $args   An array of arguments. @see wp_nav_menu()
      */
     public function end_el( &$output, $item, $depth = 0, $args = array() ) {
-        if (isset($args->has_children) && $depth === 0) {
+        if (isset($args->has_children) && $depth >= 0) {
             $output .= "</li>\n";
         }
     }
